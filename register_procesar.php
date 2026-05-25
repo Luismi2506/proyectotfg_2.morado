@@ -20,7 +20,7 @@ if (!empty($errors)) {
     exit();
 }
 
-$stmt = $conn->prepare("SELECT id_usuario FROM usuario WHERE correo = ?");
+$stmt = $conn->prepare("SELECT idusuario FROM usuario WHERE correo = ?");
 $stmt->bind_param("s", $email);
 $stmt->execute();
 $result = $stmt->get_result();

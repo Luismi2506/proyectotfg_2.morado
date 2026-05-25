@@ -3,15 +3,15 @@ session_start();
 header('Content-Type: application/json; charset=UTF-8');
 require_once 'conexion.php';
 
-if (!isset($_SESSION['user']['id_usuario'])) {
+if (!isset($_SESSION['user']['idusuario'])) {
     http_response_code(401);
     echo json_encode(['ok' => false, 'message' => 'Sesión no válida']);
     exit;
 }
 
-$id = (int)$_SESSION['user']['id_usuario'];
+$id = (int)$_SESSION['user']['idusuario'];
 
-$stmt = $conn->prepare("DELETE FROM usuario WHERE id_usuario = ?");
+$stmt = $conn->prepare("DELETE FROM usuario WHERE idusuario = ?");
 $stmt->bind_param("i", $id);
 
 if ($stmt->execute()) {

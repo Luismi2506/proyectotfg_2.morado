@@ -3,7 +3,7 @@ session_start();
 header('Content-Type: application/json; charset=UTF-8');
 require_once 'conexion.php';
 
-if (!isset($_SESSION['user']['id_usuario'])) {
+if (!isset($_SESSION['user']['idusuario'])) {
     http_response_code(401);
     echo json_encode(['ok' => false, 'message' => 'Sesión no válida']);
     exit;
@@ -34,9 +34,9 @@ if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-$id = (int)$_SESSION['user']['id_usuario'];
+$id = (int)$_SESSION['user']['idusuario'];
 
-$stmt = $conn->prepare("SELECT id_usuario FROM usuario WHERE correo = ? AND id_usuario <> ?");
+$stmt = $conn->prepare("SELECT idusuario FROM usuario WHERE correo = ? AND idusuario <> ?");
 $stmt->bind_param("si", $correo, $id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -49,10 +49,10 @@ if ($result->num_rows > 0) {
 
 if ($contrasena !== '') {
     $hashed = password_hash($contrasena, PASSWORD_DEFAULT);
-    $stmt = $conn->prepare("UPDATE usuario SET usuario = ?, correo = ?, contrasena = ? WHERE id_usuario = ?");
+    $stmt = $conn->prepare("UPDATE usuario SET usuario = ?, correo = ?, contrasena = ? WHERE idusuario = ?");
     $stmt->bind_param("sssi", $usuario, $correo, $hashed, $id);
 } else {
-    $stmt = $conn->prepare("UPDATE usuario SET usuario = ?, correo = ? WHERE id_usuario = ?");
+    $stmt = $conn->prepare("UPDATE usuario SET usuario = ?, correo = ? WHERE idusuario = ?");
     $stmt->bind_param("ssi", $usuario, $correo, $id);
 }
 

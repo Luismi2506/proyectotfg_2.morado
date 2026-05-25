@@ -355,3 +355,70 @@ select option:hover {
   transform: scale(1.05);
 }
 
+/* CHAT IA - GROK */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: 12px;
+  padding: 12px;
+  gap: 10px;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.chat-message {
+  padding: 6px 10px;
+  border-radius: 12px;
+  margin-bottom: 6px;
+  max-width: 80%;
+  font-size: 13px;
+}
+
+.chat-message.user {
+  background: #185FA5;
+  color: #fff;
+  align-self: flex-end;
+}
+
+.chat-message.grok {
+  background: #E6F1FB;
+  color: #0C447C;
+  align-self: flex-start;
+}
+
+.chat-input-container {
+  display: flex;
+  gap: 6px;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 0.5px solid var(--color-border-secondary);
+  background: var(--color-background-primary);
+  color: var(--color-text-primary);
+  font-size: 13px;
+}
+
+.chat-send-btn {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: none;
+  background: #185FA5;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.chat-send-btn:hover {
+  background: #0C447C;
+}

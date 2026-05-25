@@ -16,7 +16,7 @@ if ($correo === '' || $contrasena === '') {
     exit();
 }
 
-$stmt = $conn->prepare("SELECT id_usuario, usuario, correo, contrasena FROM usuario WHERE correo = ?");
+$stmt = $conn->prepare("SELECT idusuario, usuario, correo, contrasena FROM usuario WHERE correo = ?");
 $stmt->bind_param("s", $correo);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -36,7 +36,7 @@ if (!password_verify($contrasena, $user['contrasena'])) {
 }
 
 $_SESSION['user'] = [
-    'id_usuario' => $user['id_usuario'],
+    'idusuario' => $user['idusuario'],
     'usuario' => $user['usuario'],
     'correo' => $user['correo']
 ];
